@@ -1,0 +1,276 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>University ID Card</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+        }
+        
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            background: linear-gradient(45deg, #e6f1ff, #f0f7ff);
+            padding: 20px;
+        }
+        
+        .id-card {
+            width: 100%;
+            max-width: 400px;
+            background: white;
+            border-radius: 16px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+            position: relative;
+            transition: transform 0.3s ease;
+        }
+        
+        .id-card:hover {
+            transform: translateY(-5px);
+        }
+        
+        .header {
+            background: linear-gradient(135deg, #2563eb, #1e40af);
+            color: white;
+            padding: 20px;
+            text-align: center;
+            position: relative;
+        }
+        
+        .university-name {
+            font-size: 20px;
+            font-weight: 600;
+            margin-bottom: 5px;
+        }
+        
+        .id-title {
+            font-size: 16px;
+            font-weight: 400;
+            opacity: 0.9;
+        }
+        
+        .photo-section {
+            display: flex;
+            justify-content: center;
+            margin-top: 20px;
+            margin-bottom: 20px;
+        }
+        
+        .photo-placeholder {
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            border: 4px solid white;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+            background: #f3f4f6;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        
+        .photo-placeholder img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        
+        .details {
+            padding: 20px;
+            color: #1f2937;
+        }
+        
+        .detail-row {
+            margin-bottom: 15px;
+            display: flex;
+            justify-content: space-between;
+            border-bottom: 1px solid #e5e7eb;
+            padding-bottom: 5px;
+        }
+        
+        .detail-label {
+            font-weight: 500;
+            color: #4b5563;
+        }
+        
+        .detail-value {
+            font-weight: 600;
+            text-align: right;
+        }
+        
+        .footer {
+            background: #f9fafb;
+            padding: 15px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-top: 1px solid #e5e7eb;
+        }
+        
+        .barcode {
+            width: 100px;
+            height: 50px;
+            background: #1f2937;
+            position: relative;
+            border-radius: 4px;
+        }
+        
+        .signature {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        
+        .signature-line {
+            width: 100px;
+            height: 1px;
+            background: #9ca3af;
+            margin-top: 15px;
+        }
+        
+        .signature-label {
+            font-size: 10px;
+            color: #6b7280;
+            margin-top: 5px;
+        }
+        
+        .valid-label {
+            position: absolute;
+            bottom: 15px;
+            right: 20px;
+            font-size: 10px;
+            color: #6b7280;
+        }
+        
+        /* Animation for the barcode (just for demo) */
+        @keyframes barcodeAnim {
+            0% { opacity: 0.7; }
+            50% { opacity: 1; }
+            100% { opacity: 0.7; }
+        }
+        
+        .security-features {
+            display: flex;
+            justify-content: center;
+            margin-top: 20px;
+        }
+        
+        .holo-sticker {
+            width: 30px;
+            height: 30px;
+            background: linear-gradient(45deg, #8b5cf6, #3b82f6);
+            border-radius: 50%;
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            opacity: 0.8;
+        }
+        
+        @media (max-width: 480px) {
+            .id-card {
+                max-width: 90%;
+            }
+            
+            .university-name {
+                font-size: 18px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="id-card">
+        <div class="holo-sticker"></div>
+        <div class="header">
+            <div class="university-name">TECHNICAL UNIVERSITY</div>
+            <div class="id-title">STUDENT IDENTIFICATION CARD</div>
+        </div>
+        
+        <div class="photo-section">
+            <div class="photo-placeholder">
+                <img src="https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/dbbcafa5-6b0e-491c-9619-700bebe4f682.png" alt="Student ID photo of Said Abid Sadat, wearing blue shirt with university background">
+            </div>
+        </div>
+        
+        <div class="details">
+            <div class="detail-row">
+                <div class="detail-label">Full Name:</div>
+                <div class="detail-value" id="studentName">Said Abid Sadat</div>
+            </div>
+            <div class="detail-row">
+                <div class="detail-label">Roll Number:</div>
+                <div class="detail-value" id="rollNumber">2201010031</div>
+            </div>
+            <div class="detail-row">
+                <div class="detail-label">Course:</div>
+                <div class="detail-value" id="course">B.Tech CSE</div>
+            </div>
+            <div class="detail-row">
+                <div class="detail-label">Department:</div>
+                <div class="detail-value" id="department">Computer Science</div>
+            </div>
+            <div class="detail-row">
+                <div class="detail-label">Validity:</div>
+                <div class="detail-value" id="validity">2022 - 2026</div>
+            </div>
+        </div>
+        
+        <div class="security-features">
+            <div class="barcode"></div>
+        </div>
+        
+        <div class="footer">
+            <div class="signature">
+                <div class="signature-line"></div>
+                <div class="signature-label">Authorized Signature</div>
+            </div>
+            <div class="valid-label">
+                ISSUED: <span id="issuedDate">01/08/2022</span>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Animate the barcode for demonstration
+        document.addEventListener('DOMContentLoaded', function() {
+            const barcode = document.querySelector('.barcode');
+            
+            function animateBarcode() {
+                setInterval(() => {
+                    barcode.style.opacity = Math.random() * 0.3 + 0.7;
+                }, 300);
+            }
+            
+            // Generate random barcode lines
+            for (let i = 0; i < 20; i++) {
+                const line = document.createElement('div');
+                line.style.position = 'absolute';
+                line.style.left = `${5 + i * 5}px`;
+                line.style.top = '0';
+                line.style.width = `${Math.random() * 3 + 1}px`;
+                line.style.height = '100%';
+                line.style.backgroundColor = `rgba(255, 255, 255, ${Math.random() * 0.5 + 0.2})`;
+                barcode.appendChild(line);
+            }
+            
+            animateBarcode();
+            
+            // Set issued date to current date if needed
+            const currentDate = new Date();
+            document.getElementById('issuedDate').textContent = 
+                `${String(currentDate.getDate()).padStart(2, '0')}/` +
+                `${String(currentDate.getMonth() + 1).padStart(2, '0')}/` +
+                `${currentDate.getFullYear()}`;
+        });
+    </script>
+</body>
+</html>
+
